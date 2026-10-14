@@ -1,0 +1,71 @@
+name: Bug report
+description: Something in the MUPolya site or app is broken or behaves unexpectedly.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Use this form for problems with the **MUPolya** site or app
+        (pages not loading, buttons not working, the Lean checker misbehaving, etc.).
+
+        If the problem is with the **mathematics or text** of a subject (a typo, a wrong statement,
+        a confusing explanation), please use the **Content issue** form instead.
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project
+      description: Where did you see the problem?
+      options:
+        - MUPolya
+        - polya-topology
+        - polya-basic
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      description: Link to the page where the problem happened, if applicable.
+      placeholder: https://...
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe what you saw.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we make the problem happen again?
+      placeholder: |
+        1. Go to ...
+        2. Click on ...
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error messages or Lean output
+      description: Paste any error text or Lean messages. This will be formatted as code automatically.
+      render: shell
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and operating system
+      placeholder: e.g. Firefox 131 on macOS 15
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop images here if they help explain the problem.

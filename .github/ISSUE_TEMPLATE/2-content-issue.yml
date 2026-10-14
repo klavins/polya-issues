@@ -1,0 +1,54 @@
+name: Content issue
+description: A typo, mathematical error, broken proof, or unclear explanation in a subject.
+title: "[Content]: "
+labels: ["content", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report problems with the **content** of a subject — the prose,
+        mathematics, problems, or Lean code in **polya-topology** or **polya-basic**.
+  - type: dropdown
+    id: project
+    attributes:
+      label: Subject repository
+      options:
+        - polya-topology
+        - polya-basic
+        - Other / not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - Typo or grammar
+        - Mathematical error (a statement or argument is wrong)
+        - Lean code does not compile or a proof is broken
+        - Problem statement is wrong, ambiguous, or unsolvable
+        - Explanation is unclear or confusing
+        - Broken link or reference
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Page URL, or the subject / section / concept / problem name.
+      placeholder: e.g. Metric Spaces › Open Sets › Problem 3
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What it currently says
+      description: Quote the relevant text or Lean code.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested
+    attributes:
+      label: What you think it should say
+      description: Optional, but very helpful — a correction, a counterexample, or why it is confusing.

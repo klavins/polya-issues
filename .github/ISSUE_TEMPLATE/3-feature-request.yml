@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest a new feature or improvement for MUPolya.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make MUPolya better? Tell us about it.
+        To suggest a new **topic, section, or problem** for a subject, use the **New content suggestion** form instead.
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project
+      options:
+        - MUPolya
+        - polya-topology
+        - polya-basic
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation or frustration that prompted this idea.
+      placeholder: "When I'm working on a problem, I wish I could ..."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like to see happen?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches or workarounds you have thought about.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Mockups, screenshots, links to similar features elsewhere, etc.

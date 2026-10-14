@@ -1,0 +1,56 @@
+name: New content suggestion
+description: Propose a new topic, section, concept, or problem for a subject.
+title: "[Content suggestion]: "
+labels: ["content-suggestion", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest new material for **polya-topology** or **polya-basic**.
+        To report a mistake in existing content, use the **Content issue** form instead.
+  - type: dropdown
+    id: project
+    attributes:
+      label: Subject repository
+      options:
+        - polya-topology
+        - polya-basic
+        - A new subject
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you suggesting?
+      options:
+        - A new problem or exercise
+        - A new concept or definition
+        - A new section or topic
+        - A new example or explanation
+        - A whole new subject
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the material. Include statements, definitions, or a sketch of a problem if you have them.
+    validations:
+      required: true
+  - type: input
+    id: placement
+    attributes:
+      label: Where should it go?
+      description: Which section it belongs in, or what it should come before or after.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Textbooks, papers, or Mathlib declarations that relate to this suggestion.
+  - type: textarea
+    id: lean
+    attributes:
+      label: Lean sketch
+      description: Optional Lean 4 code for the statement or proof.
+      render: lean
