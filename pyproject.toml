@@ -1,0 +1,19 @@
+[project]
+name = "polya-issues"
+version = "0.1.0"
+description = "Carries the tracker's issues to the Polya repositories and their resolutions back"
+requires-python = ">=3.12"
+dependencies = ["pyyaml>=6.0"]
+
+[project.scripts]
+issues = "issues.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["issues"]

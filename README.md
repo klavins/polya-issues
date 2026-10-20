@@ -40,3 +40,18 @@ A bug we can reproduce is a bug we can fix. Please:
 9. **Add screenshots** for visual problems, such as layout or rendering glitches. Drag the images into the form.
 
 If the problem is with the mathematics or wording of a subject rather than the software, use the **Content issue** form instead.
+
+## For the maintainer
+
+This repository also holds `issues`, the tool that carries open issues to the checkouts beside
+this one and their resolutions back. From this directory:
+
+| command | what it does | who runs it |
+|---|---|---|
+| `uv run issues pull` | writes each repository's `reported.yaml` with the open issues routed to it (read-only on GitHub) | anyone |
+| `uv run issues check` | validates every `reported.yaml` | anyone |
+| `uv run issues status` | one table of every entry across the repositories | anyone |
+| `uv run issues post` | comments, relabels and closes on GitHub from the resolutions, one item at a time | the maintainer |
+
+An issue is routed by a `repo:<name>` label when it has one, else by the project its form names.
+`uv run pytest tests/` runs the tool's tests against recorded issues and a fake `gh`.

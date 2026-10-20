@@ -1,0 +1,167 @@
+[
+ {
+  "author": {
+   "login": "reporter1"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nExplanation is unclear or confusing\n\n### Location\n\nGetting Started › Types › The Type of a Term › Checking a Type\n\n### What it currently says\n\n\"#check [-1,2,0].length gives 3.\"\n\nTypos in the same problem:\n- \"Check chan also infer the type of an expression\"\n- \"withouth evaluating it\"\n- Comment on line 25: \"-- A Real Numer\"\n\n### What you think it should say\n\n#check [-1,2,0].length gives `[-1, 2, 0].length : ℕ` (it only shows the type). \n#eval [-1,2,0].length gives 3. I verified both in the editor.\n\nTypo fixes: \"chan\" → \"can\", \"withouth\" → \"without\", \"Numer\" → \"Number\".\n\n<img width=\"1469\" height=\"619\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/777b311f-85fc-4ada-89fa-32597d7f2716\" />",
+  "comments": [],
+  "createdAt": "2026-10-20T19:25:28Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 12,
+  "title": "[Content]: Checking a Type says #check gives 3 (should be #eval), plus typos",
+  "url": "https://github.com/klavins/polya-issues/issues/12"
+ },
+ {
+  "author": {
+   "login": "reporter2"
+  },
+  "body": "### Project\n\nMUPolya\n\n### Page URL\n\nhttps://polya.see260020.projects.jetstream-cloud.org/s/gettingstarted/p/polymorphic_higher_order\n\n### What happened?\n\nMy solution for the \"Functions of Functions, Again\" problem was incorrect. I made `four_times` apply a function thrice instead of four times. However, the checker’s message blames the twice ℕ double 5 check, even though that check is correct. It also refers to a “fourth required check” when the problem only lists three.\n\n### What did you expect to happen?\n\nI expected the checker to give feedback that points to the failing definition, four_times.\n\n### Steps to reproduce\n\n1. Go to https://polya.see260020.projects.jetstream-cloud.org/s/gettingstarted/p/polymorphic_higher_order\n2. Enter this solution: \n```\ndef M (τ : Type) := (τ → τ) → τ → τ\n\ndef twice : M τ := fun f x => f (f x)\n\ndef thrice : M τ := fun f x => f (f (f x))\n\ndef four_times : M τ := fun f x => (f (f (f x)))\n```\n3. Click \"Check\" and wait for the explanation to pop up\n\n### Error messages or Lean output\n\n```shell\nWhy it failed.\n\nYour code compiles, but the fourth required check — the one meant to use twice ℕ double 5 — couldn't be confirmed to behave as intended. The problem specifically asks for a check that applies twice to double and 5 and evaluates to the expected doubled-twice result, and the check could not establish that your expression produces that intended value.\n```\n\n### Browser and operating system\n\nFirefox 158.0 on Windows 11\n\n### Screenshots\n\n_No response_",
+  "comments": [],
+  "createdAt": "2026-10-20T08:50:43Z",
+  "labels": [
+   {
+    "name": "bug"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 11,
+  "title": "[Bug]: Misleading checker feedback in “Functions of Functions, Again” problem",
+  "url": "https://github.com/klavins/polya-issues/issues/11"
+ },
+ {
+  "author": {
+   "login": "reporter3"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nTypo or grammar\n\n### Location\n\nGetting Started / Structures / Structures / Swapping Pair Parts\n\n### What it currently says\n\nOn the second definition, line 30, It says \"Pair.swap2\", and when you fill in your answer you must have it be Pair.swap2 (If you define the function using SPair.swap2 as the name of the definition, Polya rejects it yet it should be correct)\n\n### What you think it should say\n\nChange it to Spair.swap2, and allow an answer of SPair.swap2.",
+  "comments": [],
+  "createdAt": "2026-10-19T23:59:35Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 10,
+  "title": "Issue with Definition Pair.swap2",
+  "url": "https://github.com/klavins/polya-issues/issues/10"
+ },
+ {
+  "author": {
+   "login": "reporter3"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nProblem statement is wrong, ambiguous, or unsolvable\n\n### Location\n\nGetting Started / Inductives / Inductive Types / Binary Trees\n\n### What it currently says\n\nOn line 12:\n\"Define a binary tree type BTree α over a type α that has two constructors leaf and node. The leaf constructor should take a term of type α and give a BTree α. The node constructor should take a term of type α, a term of type BTree α (the left child) and another term of type α (the right child), and return a BTree α.\"\n\n### What you think it should say\n\nIt should be:\nDefine a binary tree type BTree α over a type α that has two constructors leaf and node:\n\nThe leaf constructor should take a term of type α and give a BTree α. \n\nThe node constructor should take a term of type α, a term of type BTree α (the left child) and another term of type **BTree** α (the right child), and return a BTree α.",
+  "comments": [],
+  "createdAt": "2026-10-19T23:54:27Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 9,
+  "title": "Binary Tree Issue",
+  "url": "https://github.com/klavins/polya-issues/issues/9"
+ },
+ {
+  "author": {
+   "login": "reporter3"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nProblem statement is wrong, ambiguous, or unsolvable\n\n### Location\n\nGetting Started / Inductives / Inductive Types / Matching\n\n### What it currently says\n\nOn Line 21\n\"Define rotate (t : Three) that sends one to two, two to three and three to one. Then prove the simple example showing that two rotations of one gives one again.\"\n\n### What you think it should say\n\nShould say:\nDefine rotate (t : Three) that sends one to two, two to three and three to one. Then prove the simple example showing that **three** rotations of one gives one again.",
+  "comments": [],
+  "createdAt": "2026-10-19T23:50:40Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 8,
+  "title": "Incorrect Paragraph",
+  "url": "https://github.com/klavins/polya-issues/issues/8"
+ },
+ {
+  "author": {
+   "login": "reporter3"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nTypo or grammar\n\n### Location\n\nGetting Started / Types / The Type of a Term / Checking a Type\n\n### What it currently says\n\nOn Line 25:\n\"-- A Real Numer\"\n\n### What you think it should say\n\nIt should say:\n\"-- A Real Number\"",
+  "comments": [],
+  "createdAt": "2026-10-19T23:47:48Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 7,
+  "title": "Typo",
+  "url": "https://github.com/klavins/polya-issues/issues/7"
+ },
+ {
+  "author": {
+   "login": "reporter3"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nTypo or grammar\n\n### Location\n\nGetting Started / Terms / Terms / Lists \n\n### What it currently says\n\n\"-- The list of rational terms of the sequence `1/(n+1)` for `n=0` to `5`\"\n\n### What you think it should say\n\nShould be \"-- The list of rational terms of the sequence `1/(n+1)` for `n=0` to `4`\"",
+  "comments": [],
+  "createdAt": "2026-10-19T23:45:52Z",
+  "labels": [
+   {
+    "name": "content"
+   },
+   {
+    "name": "triage"
+   }
+  ],
+  "number": 6,
+  "title": "[Content]:",
+  "url": "https://github.com/klavins/polya-issues/issues/6"
+ },
+ {
+  "author": {
+   "login": "reporter4"
+  },
+  "body": "### Project\n\npolya-basic\n\n### Page URL\n\nhttps://polya.see260020.projects.jetstream-cloud.org/s/gettingstarted/p/btree_def\n\n### What happened?\n\nAfter solving the problem (with the assistance of ChatGPT), I wanted to clarify my understanding on why the lean code had to be written in a particular manner. However, after prompting Polya with my clarification question (see below), Polya refused to help claiming that it was related to solving the proof. \n\n### What did you expect to happen?\n\nAs I had already solved the problem, I expected Polya to respond to my clarifying question with a Yes or No response to correct my understanding.  \n\n### Steps to reproduce\n\n1. Open https://polya.see260020.projects.jetstream-cloud.org/s/gettingstarted/p/btree_def\n2. Solve the Binary Tree problem\n3. Go to \"Ask Polya\" and prompt  \"why do you have to do α → BTree α?\"\n4. After that prompt Polya, \"so you tell input and output and for node it is on left and right so you do have two more arrows\"\n5. Polya returns the following message, \"Ask Polya doesn't help with the proof itself. Hint does, and it counts; Check gives a verdict for free\"\n**Note:** From the 10/14 project meeting it seems that Polya behaves similarly on multiple instances. \n\n### Error messages or Lean output\n\n```shell\n'''Ask Polya doesn't help with the proof itself. Hint does, and it counts; Check gives a verdict for free'''\n```\n\n### Browser and operating system\n\n_No response_\n\n### Screenshots\n\n<img width=\"914\" height=\"685\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e40b4459-c61b-46ff-9c01-3c6896c5af00\" />",
+  "comments": [],
+  "createdAt": "2026-10-15T04:45:37Z",
+  "labels": [
+   {
+    "name": "enhancement"
+   }
+  ],
+  "number": 2,
+  "title": "[Bug]: Polya Refuses to Answer Problem-Related Questions After Solving the Exercise",
+  "url": "https://github.com/klavins/polya-issues/issues/2"
+ },
+ {
+  "author": {
+   "login": "klavins"
+  },
+  "body": "### Subject repository\n\npolya-basic\n\n### Kind of problem\n\nExplanation is unclear or confusing\n\n### Location\n\nSetTheory / Functions \n\n### What it currently says\n\nIn SetTheory, Polya uses functions called image f U and preimage x U. But in GeneralTopology, without warning, Polya uses f '' U and f ⁻¹' U, which could be confusing to the student. It would be nice if SetTheory introduced this notation. \n\n### What you think it should say\n\n_No response_",
+  "comments": [],
+  "createdAt": "2026-10-14T22:44:12Z",
+  "labels": [
+   {
+    "name": "content"
+   }
+  ],
+  "number": 1,
+  "title": "[Content]: Image and pre-image notation in Set Theory not consistent with Mathlib in General Topolgoy",
+  "url": "https://github.com/klavins/polya-issues/issues/1"
+ }
+]
