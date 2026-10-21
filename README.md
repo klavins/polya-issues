@@ -41,7 +41,82 @@ A bug we can reproduce is a bug we can fix. Please:
 
 If the problem is with the mathematics or wording of a subject rather than the software, use the **Content issue** form instead.
 
-## For the maintainer
+## For a repository's maintainer
+
+The open issues routed to your repository are in `reported.yaml` at its root, written by
+`issues pull` (from a checkout of this repository beside yours, `uv run issues pull`; it is
+read-only on GitHub, so run it whenever you like). An entry holds the issue as it was filed, its
+comments, and four fields that are yours to edit: `status`, `commit`, `repo` and `resolution`.
+Everything else is regenerated on every pull, so change nothing else.
+
+When you have addressed an issue:
+
+1. **Set `status`** to one of five words.
+
+   | status | when | also needs |
+   |---|---|---|
+   | `fixed` | the fix is committed | `commit`: the hash of that commit, quoted if it is all digits |
+   | `wontfix` | the content is right as it stands | a `resolution` saying why |
+   | `to` | the issue belongs to another repository | `repo`: that repository's name, such as `polya-topology` |
+   | `ask` | you need the tracker's maintainer to decide something | a `resolution` holding the question |
+   | `open` | nothing done yet | |
+
+2. **Write `resolution` for the reporter.** It is posted word for word as a comment on the
+   issue, so say what changed in their terms, not yours. A multi-line text goes under `|`. For a
+   `fixed` entry the tool appends the repository, the commit and when the change reaches the
+   site; you need not.
+
+3. **Run `uv run issues check`.** It validates every `reported.yaml` and names any entry that is
+   wrong: a status outside the five, a `fixed` without a `commit`, a missing resolution, an
+   unknown field. A file that fails the check is never posted.
+
+4. **Push the commit.** The tracker's maintainer runs `issues post`, which refuses a `fixed`
+   entry whose commit is not on your repository's remote, comments and closes the issue, and
+   pulls again, so the entry leaves your file.
+
+An entry as `pull` writes it, and after a fix:
+
+```yaml
+- issue: 7
+  title: Typo
+  form: Content issue
+  kind: Typo or grammar
+  location: Getting Started / Types / The Type of a Term / Checking a Type
+  url: https://github.com/klavins/polya-issues/issues/7
+  filed: '2026-10-19'
+  labels:
+  - content
+  - triage
+  body: |-
+    **What it currently says**
+    On Line 25:
+    "-- A Real Numer"
+
+    **What you think it should say**
+    It should say:
+    "-- A Real Number"
+  status: open
+  resolution:
+```
+
+```yaml
+  status: fixed
+  commit: 3f2a9c1
+  resolution: |
+    Thank you. The comment on Checking a Type now reads "A Real Number".
+```
+
+An issue that is not yours:
+
+```yaml
+  status: to
+  repo: polya-topology
+  resolution: |
+    Set Theory now introduces the image and preimage notation. The first use in General
+    Topology could point back to it.
+```
+
+## For the tracker's maintainer
 
 This repository also holds `issues`, the tool that carries open issues to the checkouts beside
 this one and their resolutions back. From this directory:
@@ -51,7 +126,10 @@ this one and their resolutions back. From this directory:
 | `uv run issues pull` | writes each repository's `reported.yaml` with the open issues routed to it (read-only on GitHub) | anyone |
 | `uv run issues check` | validates every `reported.yaml` | anyone |
 | `uv run issues status` | one table of every entry across the repositories | anyone |
-| `uv run issues post` | comments, relabels and closes on GitHub from the resolutions, one item at a time | the maintainer |
+| `uv run issues post` | comments, relabels and closes on GitHub from the resolutions, one item at a time after showing each | the tracker's maintainer |
 
-An issue is routed by a `repo:<name>` label when it has one, else by the project its form names.
-`uv run pytest tests/` runs the tool's tests against recorded issues and a fake `gh`.
+An issue is routed by a `repo:<name>` label when it has one, else by the project its form names;
+one the tool cannot route is printed by `pull` for you to label. `post` validates every file
+before its first GitHub call, refuses a `fixed` whose commit is not on the remote, and removes
+`triage` from every issue it acts on. `uv run pytest tests/` runs the tool's tests against
+recorded issues and a fake `gh`.
